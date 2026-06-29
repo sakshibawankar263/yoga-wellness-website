@@ -64,33 +64,112 @@ function revealIdentity() {
   setTimeout(() => {
 
     cardWrapper.classList.add('flipped');
+    const holo = document.querySelector(".card-holographic");
+
+setTimeout(() => {
+
+    if(holo){
+
+        holo.style.animation = "holoSweep 1.3s ease forwards";
+
+    }
+
+},200);
+
+    const photo = document.getElementById('target-photo');
+const scan = document.querySelector('.photo-scan');
+
+    setTimeout(() => {
+        scan.style.top = "120%";
+    }, 300);
+
+    setTimeout(() => {
+        photo.classList.add("show");
+        document.querySelector(".card-photo-frame")
+?.classList.add("photo-active");
+    }, 800);
 
     setTimeout(() => {
 
-      idFields.forEach((field, index) => {
+        idFields.forEach((field, index) => {
+
+            setTimeout(() => {
+                field.classList.add('visible');
+                const led = field.querySelector(".status-led");
+
+if(led){
+
+led.classList.add("active");
+
+}
+
+const value = field.querySelector('.id-field__val');
+
+if(value){
+
+    const txt = value.dataset.text || value.textContent;
+
+    value.dataset.text = txt;
+
+    value.textContent = "";
+
+    let i = 0;
+
+    const typer = setInterval(()=>{
+
+        value.textContent += txt.charAt(i);
+
+        i++;
+
+        if(i >= txt.length){
+
+            clearInterval(typer);
+
+        }
+
+    },25);
+
+}
+            }, index * 350);
+
+        });
 
         setTimeout(() => {
 
-          field.classList.add('visible');
+            idQuote.classList.add('visible');
+            const quote = idQuote.querySelector(".id-quote__text");
 
-        }, index * 350);
+const q = quote.dataset.text || quote.textContent;
 
-      });
+quote.dataset.text = q;
 
-      setTimeout(() => {
+quote.textContent = "";
 
-        idQuote.classList.add('visible');
-        showBtn('btn-identity-next');
+let j = 0;
 
-        STATE.identityRevealed = true;
+const qType = setInterval(()=>{
 
-      }, idFields.length * 350 + 400);
+    quote.textContent += q.charAt(j);
+
+    j++;
+
+    if(j >= q.length){
+
+        clearInterval(qType);
+
+    }
+
+},30);
+            showBtn('btn-identity-next');
+            STATE.identityRevealed = true;
+
+        }, idFields.length * 350 + 400);
 
     }, 600);
 
-  }, 900);
-
+}, 900);
 }
+
 
 function spawnCardParticle(container) {
 

@@ -87,21 +87,31 @@
   padding: 1rem;
   gap: 0.75rem;
 }
-.card-holographic {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    transparent 30%,
-    rgba(0,184,255,0.05) 40%,
-    rgba(155,92,246,0.05) 50%,
-    rgba(0,229,160,0.05) 60%,
-    transparent 70%
-  );
-  background-size: 200% 200%;
-  animation: holographic 5s ease-in-out infinite;
-  pointer-events: none;
-  border-radius: 12px;
+.card-holographic{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(255,255,255,.18) 35%,
+        rgba(0,184,255,.35) 45%,
+        rgba(155,92,246,.25) 55%,
+        transparent 70%
+    );
+    transform:translateX(-160%);
+    pointer-events:none;
+    z-index:4;
+}
+@keyframes holoSweep{
+
+0%{
+transform:translateX(-160%);
+}
+
+100%{
+transform:translateX(160%);
+}
+
 }
 @keyframes holographic {
   0%, 100% { background-position: 0% 0%; }
@@ -116,6 +126,11 @@
   justify-content: center;
   background: rgba(0,184,255,0.03);
   overflow: hidden;
+  box-shadow:
+0 0 20px rgba(0,184,255,.25),
+0 0 45px rgba(0,184,255,.15);
+
+transition:.5s;
 }
 .card-photo-scan {
   position: absolute;
@@ -124,11 +139,15 @@
   background: linear-gradient(90deg, transparent, var(--blue), transparent);
   animation: card-scan 2s linear infinite;
 }
-.card-photo-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+.card-photo-placeholder{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:100%;
+  position:relative;
+  overflow:hidden;
 }
 .card-photo-icon {
   font-size: 2.5rem;
@@ -408,5 +427,138 @@ letter-spacing:.1em;
 opacity:0;
 
 visibility:hidden;
+
+}
+
+.target-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 25%;
+}
+
+.target-photo.show{
+
+opacity:1;
+
+transform:scale(1);
+
+filter:none;
+
+}
+
+.photo-scan{
+
+position:absolute;
+
+left:0;
+
+top:-100%;
+
+width:100%;
+
+height:40%;
+
+background:linear-gradient(
+
+transparent,
+
+rgba(0,184,255,.65),
+
+transparent
+
+);
+
+transition:1s;
+
+pointer-events:none;
+
+}
+
+.id-field__val{
+
+overflow:hidden;
+
+white-space:nowrap;
+
+}
+
+.id-field__val::after{
+
+content:"|";
+
+margin-left:2px;
+
+color:var(--blue);
+
+animation:blinkCursor .8s infinite;
+
+}
+
+@keyframes blinkCursor{
+
+50%{
+
+opacity:0;
+
+}
+
+}
+
+.card-photo-frame.photo-active{
+
+box-shadow:
+0 0 25px rgba(0,184,255,.5),
+0 0 60px rgba(0,184,255,.25);
+
+}
+
+.status-led{
+
+width:10px;
+
+height:10px;
+
+border-radius:50%;
+
+background:#233;
+
+margin-right:12px;
+
+box-shadow:0 0 0 transparent;
+
+transition:.3s;
+
+flex-shrink:0;
+
+}
+
+.status-led.active{
+
+background:var(--green);
+
+box-shadow:
+0 0 8px var(--green),
+0 0 20px var(--green);
+
+}
+
+.id-field{
+
+transform:translateY(15px) scale(.96);
+
+opacity:0;
+
+transition:
+opacity .4s,
+transform .4s;
+
+}
+
+.id-field.visible{
+
+opacity:1;
+
+transform:translateY(0) scale(1);
 
 }
