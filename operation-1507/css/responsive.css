@@ -1,0 +1,21 @@
+@media (max-width: 900px) {
+  .identity-layout { flex-direction: column; gap: 2rem; }
+  .card-scene { width: 180px; }
+  .card-wrapper { width: 180px; height: 260px; }
+  .personality-grid { grid-template-columns: repeat(2, 1fr); }
+  .evidence-grid { grid-template-columns: repeat(2, 1fr); }
+  .code-challenge-layout { flex-direction: column; }
+  .code-right { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+}
+@media (max-width: 580px) {
+  :root { --section-pad: 2rem; }
+  .personality-grid { grid-template-columns: 1fr 1fr; }
+  .evidence-grid { grid-template-columns: 1fr 1fr; }
+  .id-field__key { min-width: 120px; font-size: 0.6rem; }
+  .report-paper { padding: 1.5rem 1rem; }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; }
+}

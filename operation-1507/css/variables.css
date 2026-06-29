@@ -1,0 +1,59 @@
+:root {
+  /* Base */
+  --bg-base:       #060810;
+  --bg-surface:    #0b0d16;
+  --bg-elevated:   #10141f;
+  --bg-glass:      rgba(10, 14, 26, 0.72);
+
+  /* Accents */
+  --blue:          #00b8ff;
+  --blue-dim:      rgba(0, 184, 255, 0.15);
+  --blue-glow:     rgba(0, 184, 255, 0.4);
+
+  --purple:        #9b5cf6;
+  --purple-dim:    rgba(155, 92, 246, 0.15);
+  --purple-glow:   rgba(155, 92, 246, 0.4);
+
+  --green:         #00e5a0;
+  --green-dim:     rgba(0, 229, 160, 0.15);
+  --green-glow:    rgba(0, 229, 160, 0.4);
+
+  --amber:         #f59e0b;
+  --amber-dim:     rgba(245, 158, 11, 0.15);
+  --amber-glow:    rgba(245, 158, 11, 0.4);
+
+  --white:         #e8ecf4;
+  --muted:         #4a5568;
+  --muted-lt:      #6b7a96;
+
+  /* Typography */
+  --font-display:  'Orbitron', sans-serif;
+  --font-mono:     'Share Tech Mono', monospace;
+  --font-ui:       'Rajdhani', sans-serif;
+
+  /* Spacing */
+  --section-pad:   3.5rem;
+
+  /* Transitions */
+  --t-fast:        0.15s;
+  --t-med:         0.3s;
+  --t-slow:        0.6s;
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-base);
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  cursor: none;
+  user-select: none;
+}

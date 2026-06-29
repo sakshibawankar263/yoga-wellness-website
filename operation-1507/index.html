@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLASSIFIED // OPERATION UNKNOWN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/loading.css">
+<link rel="stylesheet" href="css/identity.css">
+<link rel="stylesheet" href="css/personality.css">
+<link rel="stylesheet" href="css/evidence.css">
+<link rel="stylesheet" href="css/code.css">
+<link rel="stylesheet" href="css/terminal.css">
+<link rel="stylesheet" href="css/report.css">
+<link rel="stylesheet" href="css/button.css">
+<link rel="stylesheet" href="css/ending.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/cursor.css"
+</head>
+<body>
+
+  <!-- ============================================================
+       CUSTOM CURSOR
+  ============================================================ -->
+  <div id="cursor" class="cursor">
+    <div class="cursor-ring"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-cross cursor-cross--h"></div>
+    <div class="cursor-cross cursor-cross--v"></div>
+  </div>
+  <div id="cursor-particles" class="cursor-particles"></div>
+
+  <!-- ============================================================
+       SECTION 1 — LOADING / BOOT SEQUENCE
+  ============================================================ -->
+  <section id="s-loading" class="section section--active">
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="load-frame">
+      <div class="load-logo">
+        <span class="load-logo__bracket">[</span>
+        <span class="load-logo__text" id="logo-type"></span>
+        <span class="load-logo__cursor">▮</span>
+        <span class="load-logo__bracket">]</span>
+      </div>
+
+      <div class="load-status-list" id="boot-list">
+        <!-- JS injects boot lines here -->
+      </div>
+
+      <div class="load-bar-wrap">
+        <div class="load-bar-track">
+          <div class="load-bar-fill" id="load-bar"></div>
+          <div class="load-bar-glow"></div>
+        </div>
+        <span class="load-pct" id="load-pct">0%</span>
+      </div>
+
+      <div class="load-scanline"></div>
+      <div class="load-corner load-corner--tl"></div>
+      <div class="load-corner load-corner--tr"></div>
+      <div class="load-corner load-corner--bl"></div>
+      <div class="load-corner load-corner--br"></div>
+    </div>
+
+    <div class="load-grid"></div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2 — IDENTITY REVEAL (CARD + PROFILE)
+  ============================================================ -->
+  <section id="s-identity" class="section">
+    <canvas id="bg-canvas-2" class="section-canvas"></canvas>
+
+    <div class="section-header">
+      <span class="sec-label">CLASSIFIED FILE //</span>
+      <h2 class="sec-title" data-text="TARGET IDENTIFIED">TARGET IDENTIFIED</h2>
+      <span class="sec-line"></span>
+    </div>
+
+    <div class="identity-layout">
+
+      <!-- Left: collectible card -->
+      <div class="card-scene" id="card-scene">
+        <div class="card-wrapper" id="card-wrapper">
+
+          <!-- Card Back -->
+          <div class="card card--back">
+            <div class="card-back-pattern">
+              <div class="card-back-icon">?</div>
+              <div class="card-back-text">CLASSIFIED</div>
+            </div>
+            <div class="card-corner card-corner--tl"></div>
+            <div class="card-corner card-corner--tr"></div>
+            <div class="card-corner card-corner--bl"></div>
+            <div class="card-corner card-corner--br"></div>
+            <div class="card-scan-line"></div>
+          </div>
+
+          <!-- Card Front -->
+          <div class="card card--front">
+            <div class="card-holographic"></div>
+            <div class="card-photo-frame">
+              <div class="card-photo-scan"></div>
+              <div class="card-photo-placeholder">
+                <div class="card-photo-icon">◈</div>
+                <span class="card-photo-label">INSERT PHOTO</span>
+              </div>
+              <div class="card-photo-corner card-photo-corner--tl"></div>
+              <div class="card-photo-corner card-photo-corner--tr"></div>
+              <div class="card-photo-corner card-photo-corner--bl"></div>
+              <div class="card-photo-corner card-photo-corner--br"></div>
+            </div>
+            <div class="card-front-bottom">
+              <div class="card-codename">
+                <span class="card-codename-label">CODENAME</span>
+                <span class="card-codename-value">[ AGENT NAME ]</span>
+              </div>
+              <div class="card-classification">
+                <div class="card-badge">LEVEL 21</div>
+                <div class="card-badge card-badge--accent">ACTIVE</div>
+              </div>
+            </div>
+            <div class="card-corner card-corner--tl"></div>
+            <div class="card-corner card-corner--tr"></div>
+            <div class="card-corner card-corner--bl"></div>
+            <div class="card-corner card-corner--br"></div>
+          </div>
+
+        </div>
+        <div class="card-shadow"></div>
+        <div class="card-particles" id="card-particles"></div>
+      </div>
+
+      <!-- Right: data reveal -->
+      <div class="identity-data" id="identity-data">
+        <div class="id-field-group">
+          <div class="id-field" data-delay="0">
+            <span class="id-field__key">DESIGNATION</span>
+            <span class="id-field__sep">//</span>
+            <span class="id-field__val" id="idf-name">[ AGENT FULL NAME ]</span>
+          </div>
+          <div class="id-field" data-delay="1">
+            <span class="id-field__key">CLASSIFICATION</span>
+            <span class="id-field__sep">//</span>
+            <span class="id-field__val">INFORMATION TECHNOLOGY</span>
+          </div>
+          <div class="id-field" data-delay="2">
+            <span class="id-field__key">AGE AT ACTIVATION</span>
+            <span class="id-field__sep">//</span>
+            <span class="id-field__val">21 YEARS</span>
+          </div>
+          <div class="id-field" data-delay="3">
+            <span class="id-field__key">CLEARANCE LEVEL</span>
+            <span class="id-field__sep">//</span>
+            <span class="id-field__val id-field__val--green">ALPHA — UNRESTRICTED</span>
+          </div>
+          <div class="id-field" data-delay="4">
+            <span class="id-field__key">STATUS</span>
+            <span class="id-field__sep">//</span>
+            <span class="id-field__val id-field__val--amber">● ACTIVE — MISSION IN PROGRESS</span>
+          </div>
+          <div class="id-field" data-delay="5">
+            <span class="id-field__key">OPERATION ID</span>
+            <span class="id-field__sep">//</span>
+            <span class="id-field__val">#OPR-0001-[YEAR]</span>
+          </div>
+        </div>
+
+        <div class="id-divider"></div>
+
+        <div class="id-quote" id="id-quote">
+          <span class="id-quote__mark">"</span>
+          <span class="id-quote__text">[ PLACEHOLDER QUOTE ABOUT THE AGENT ]</span>
+          <span class="id-quote__mark">"</span>
+        </div>
+
+        <button class="cta-btn cta-btn--blue" id="btn-identity-next" data-sound="click">
+          <span class="cta-btn__icon">▶</span>
+          <span>ACCESS PERSONALITY FILE</span>
+          <div class="cta-btn__glow"></div>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3 — PERSONALITY ANALYSIS
+  ============================================================ -->
+  <section id="s-personality" class="section">
+    <canvas id="bg-canvas-3" class="section-canvas"></canvas>
+
+    <div class="section-header">
+      <span class="sec-label">BEHAVIORAL ANALYSIS //</span>
+      <h2 class="sec-title" data-text="AGENT ATTRIBUTES">AGENT ATTRIBUTES</h2>
+      <span class="sec-line sec-line--purple"></span>
+    </div>
+
+    <div class="personality-grid" id="personality-grid">
+
+      <div class="stat-card" data-color="blue" data-value="94">
+        <div class="stat-card__bg"></div>
+        <div class="stat-card__icon">⬡</div>
+        <div class="stat-card__label">LOGICAL THINKING</div>
+        <div class="stat-card__bar-wrap">
+          <div class="stat-card__bar-track">
+            <div class="stat-card__bar-fill"></div>
+          </div>
+          <div class="stat-card__bar-glow"></div>
+        </div>
+        <div class="stat-card__value">94</div>
+        <div class="stat-card__rank">S-TIER</div>
+        <div class="stat-card__corner stat-card__corner--tl"></div>
+        <div class="stat-card__corner stat-card__corner--tr"></div>
+        <div class="stat-card__corner stat-card__corner--bl"></div>
+        <div class="stat-card__corner stat-card__corner--br"></div>
+      </div>
+
+      <div class="stat-card" data-color="purple" data-value="88">
+        <div class="stat-card__bg"></div>
+        <div class="stat-card__icon">⬡</div>
+        <div class="stat-card__label">CURIOSITY DRIVE</div>
+        <div class="stat-card__bar-wrap">
+          <div class="stat-card__bar-track">
+            <div class="stat-card__bar-fill"></div>
+          </div>
+          <div class="stat-card__bar-glow"></div>
+        </div>
+        <div class="stat-card__value">88</div>
+        <div class="stat-card__rank">A-TIER</div>
+        <div class="stat-card__corner stat-card__corner--tl"></div>
+        <div class="stat-card__corner stat-card__corner--tr"></div>
+        <div class="stat-card__corner stat-card__corner--bl"></div>
+        <div class="stat-card__corner stat-card__corner--br"></div>
+      </div>
+
+      <div class="stat-card" data-color="green" data-value="97">
+        <div class="stat-card__bg"></div>
+        <div class="stat-card__icon">⬡</div>
+        <div class="stat-card__label">EXPLORATION INDEX</div>
+        <div class="stat-card__bar-wrap">
+          <div class="stat-card__bar-track">
+            <div class="stat-card__bar-fill"></div>
+          </div>
+          <div class="stat-card__bar-glow"></div>
+        </div>
+        <div class="stat-card__value">97</div>
+        <div class="stat-card__rank">S-TIER</div>
+        <div class="stat-card__corner stat-card__corner--tl"></div>
+        <div class="stat-card__corner stat-card__corner--tr"></div>
+        <div class="stat-card__corner stat-card__corner--bl"></div>
+        <div class="stat-card__corner stat-card__corner--br"></div>
+      </div>
+
+      <div class="stat-card" data-color="amber" data-value="79">
+        <div class="stat-card__bg"></div>
+        <div class="stat-card__icon">⬡</div>
+        <div class="stat-card__label">ADAPTABILITY</div>
+        <div class="stat-card__bar-wrap">
+          <div class="stat-card__bar-track">
+            <div class="stat-card__bar-fill"></div>
+          </div>
+          <div class="stat-card__bar-glow"></div>
+        </div>
+        <div class="stat-card__value">79</div>
+        <div class="stat-card__rank">B-TIER</div>
+        <div class="stat-card__corner stat-card__corner--tl"></div>
+        <div class="stat-card__corner stat-card__corner--tr"></div>
+        <div class="stat-card__corner stat-card__corner--bl"></div>
+        <div class="stat-card__corner stat-card__corner--br"></div>
+      </div>
+
+      <div class="stat-card" data-color="blue" data-value="91">
+        <div class="stat-card__bg"></div>
+        <div class="stat-card__icon">⬡</div>
+        <div class="stat-card__label">TECH PROFICIENCY</div>
+        <div class="stat-card__bar-wrap">
+          <div class="stat-card__bar-track">
+            <div class="stat-card__bar-fill"></div>
+          </div>
+          <div class="stat-card__bar-glow"></div>
+        </div>
+        <div class="stat-card__value">91</div>
+        <div class="stat-card__rank">S-TIER</div>
+        <div class="stat-card__corner stat-card__corner--tl"></div>
+        <div class="stat-card__corner stat-card__corner--tr"></div>
+        <div class="stat-card__corner stat-card__corner--bl"></div>
+        <div class="stat-card__corner stat-card__corner--br"></div>
+      </div>
+
+      <div class="stat-card" data-color="purple" data-value="85">
+        <div class="stat-card__bg"></div>
+        <div class="stat-card__icon">⬡</div>
+        <div class="stat-card__label">MYSTERY TOLERANCE</div>
+        <div class="stat-card__bar-wrap">
+          <div class="stat-card__bar-track">
+            <div class="stat-card__bar-fill"></div>
+          </div>
+          <div class="stat-card__bar-glow"></div>
+        </div>
+        <div class="stat-card__value">85</div>
+        <div class="stat-card__rank">A-TIER</div>
+        <div class="stat-card__corner stat-card__corner--tl"></div>
+        <div class="stat-card__corner stat-card__corner--tr"></div>
+        <div class="stat-card__corner stat-card__corner--bl"></div>
+        <div class="stat-card__corner stat-card__corner--br"></div>
+      </div>
+
+    </div>
+
+    <div class="section-footer-btn">
+      <button class="cta-btn cta-btn--purple" id="btn-personality-next" data-sound="click">
+        <span class="cta-btn__icon">▶</span>
+        <span>OPEN EVIDENCE ROOM</span>
+        <div class="cta-btn__glow"></div>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4 — EVIDENCE ROOM
+  ============================================================ -->
+  <section id="s-evidence" class="section">
+    <canvas id="bg-canvas-4" class="section-canvas"></canvas>
+
+    <div class="section-header">
+      <span class="sec-label">CASE FILE — RESTRICTED //</span>
+      <h2 class="sec-title" data-text="EVIDENCE ROOM">EVIDENCE ROOM</h2>
+      <span class="sec-line sec-line--green"></span>
+    </div>
+
+    <div class="evidence-grid" id="evidence-grid">
+
+      <div class="ev-card" data-id="ev1">
+        <div class="ev-card__inner">
+          <div class="ev-card__front">
+            <div class="ev-card__badge">EXHIBIT A</div>
+            <div class="ev-card__icon">⬟</div>
+            <div class="ev-card__title">MEMORY FRAGMENT</div>
+            <div class="ev-card__sub">[ CLASSIFIED ]</div>
+            <div class="ev-card__corner ev-card__corner--tl"></div>
+            <div class="ev-card__corner ev-card__corner--tr"></div>
+            <div class="ev-card__corner ev-card__corner--bl"></div>
+            <div class="ev-card__corner ev-card__corner--br"></div>
+            <div class="ev-card__glow"></div>
+          </div>
+          <div class="ev-card__back">
+            <div class="ev-card__back-label">EVIDENCE DETAILS</div>
+            <div class="ev-card__back-content">
+              [ PLACEHOLDER — Add a memory, inside joke, or milestone here ]
+            </div>
+            <div class="ev-card__back-stamp">VERIFIED</div>
+            <div class="ev-card__corner ev-card__corner--tl"></div>
+            <div class="ev-card__corner ev-card__corner--tr"></div>
+            <div class="ev-card__corner ev-card__corner--bl"></div>
+            <div class="ev-card__corner ev-card__corner--br"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev-card" data-id="ev2">
+        <div class="ev-card__inner">
+          <div class="ev-card__front">
+            <div class="ev-card__badge ev-card__badge--purple">EXHIBIT B</div>
+            <div class="ev-card__icon">◈</div>
+            <div class="ev-card__title">DATA ARTIFACT</div>
+            <div class="ev-card__sub">[ CLASSIFIED ]</div>
+            <div class="ev-card__corner ev-card__corner--tl"></div>
+            <div class="ev-card__corner ev-card__corner--tr"></div>
+            <div class="ev-card__corner ev-card__corner--bl"></div>
+            <div class="ev-card__corner ev-card__corner--br"></div>
+            <div class="ev-card__glow ev-card__glow--purple"></div>
+          </div>
+          <div class="ev-card__back">
+            <div class="ev-card__back-label">EVIDENCE DETAILS</div>
+            <div class="ev-card__back-content">
+              [ PLACEHOLDER — Add a fact, habit, or quirk here ]
+            </div>
+            <div class="ev-card__back-stamp ev-card__back-stamp--purple">VERIFIED</div>
+            <div class="ev-card__corner ev-card__corner--tl"></div>
+            <div class="ev-card__corner ev-card__corner--tr"></div>
+            <div class="ev-card__corner ev-card__corner--bl"></div>
+            <div class="ev-card__corner ev-card__corner--br"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev-card" data-id="ev3">
+        <div class="ev-card__inner">
+          <div class="ev-card__front">
+            <div class="ev-card__badge ev-card__badge--green">EXHIBIT C</div>
+            <div class="ev-card__icon">⬡</div>
+            <div class="ev-card__title">INTEL FILE</div>
+            <div class="ev-card__sub">[ CLASSIFIED ]</div>
+            <div class="ev-card__corner ev-card__corner--tl"></div>
+            <div class="ev-card__corner ev-card__corner--tr"></div>
+            <div class="ev-card__corner ev-card__corner--bl"></div>
+            <div class="ev-card__corner ev-card__corner--br"></div>
+            <div class="ev-card__glow ev-card__glow--green"></div>
+          </div>
+          <div class="ev-card__back">
+            <div class="ev-card__back-label">EVIDENCE DETAILS</div>
+            <div class="ev-card__back-content">
+              [ PLACEHOLDER — Add an achievement or talent here ]
+            </div>
+            <div class="ev-card__back-stamp ev-card__back-stamp--green">VERIFIED</div>
+            <div class="ev-card__corner ev-card__corner--tl"></div>
+            <div class="ev-card__corner ev-card__corner--tr"></div>
+            <div class="ev-card__corner ev-card__corner--bl"></div>
+            <div class="ev-card__corner ev-card__corner--br"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ev-card" data-id="ev4">
+        <div class="ev-card__inner">
+          <div class="ev-card__front">
+            <div class="ev-card__badge ev-card__badge--amber">EXHIBIT D</div>
+            <div class="ev-card__icon">⬟</div>
+            <div class="ev-card__title">FIELD REPORT</div>
+            <div class="ev-card__sub">[ CLASSIFIED ]</div>
+            <div class="ev-card__corner ev-card__corner--tl"></div>
+            <div class="ev-card__corner ev-card__corner--tr"></div>
+            <div class="ev-card__corner ev-card__corner--bl"></div>
+            <div class="ev-card__corner ev-card__corner--br"></div>
+            <div class="ev-card__glow ev-card__glow--amber"></div>
+          </div>
+          <div class="ev-card__back">
+            <div class="ev-card__back-label">EVIDENCE DETAILS</div>
+            <div class="ev-card__back-content">
+              [ PLACEHOLDER — Add a story or shared experience here ]
+            </div>
+            <div class="ev-card__back-stamp ev-card__back-stamp--amber">VERIFIED</div>
+            <div class="ev-card__corner ev-card__corner--tl"></div>
+            <div class="ev-card__corner ev-card__corner--tr"></div>
+            <div class="ev-card__corner ev-card__corner--bl"></div>
+            <div class="ev-card__corner ev-card__corner--br"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-footer-btn">
+      <button class="cta-btn cta-btn--green" id="btn-evidence-next" data-sound="click">
+        <span class="cta-btn__icon">▶</span>
+        <span>ACCESS CODING CHALLENGE</span>
+        <div class="cta-btn__glow"></div>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5 — GUESS THE OUTPUT (CODING CHALLENGE)
+  ============================================================ -->
+  <section id="s-code" class="section">
+    <canvas id="bg-canvas-5" class="section-canvas"></canvas>
+
+    <div class="section-header">
+      <span class="sec-label">COGNITIVE TEST — LEVEL 01 //</span>
+      <h2 class="sec-title" data-text="DECODE THE OUTPUT">DECODE THE OUTPUT</h2>
+      <span class="sec-line sec-line--amber"></span>
+    </div>
+
+    <div class="code-challenge-layout">
+
+      <div class="code-editor">
+        <div class="code-editor__titlebar">
+          <div class="code-editor__dot code-editor__dot--red"></div>
+          <div class="code-editor__dot code-editor__dot--yellow"></div>
+          <div class="code-editor__dot code-editor__dot--green"></div>
+          <span class="code-editor__filename">challenge_01.py</span>
+          <span class="code-editor__status">● READY</span>
+        </div>
+        <div class="code-editor__body">
+          <div class="code-editor__lines" id="code-lines">
+            <!-- JS injects line numbers -->
+          </div>
+          <div class="code-editor__content" id="code-content">
+            <!-- JS injects code here -->
+          </div>
+        </div>
+        <div class="code-editor__statusbar">
+          <span>Python 3.11</span>
+          <span>UTF-8</span>
+          <span>Line 1, Col 1</span>
+          <span class="code-editor__lang-badge">PY</span>
+        </div>
+      </div>
+
+      <div class="code-right">
+        <button class="compile-btn" id="compile-btn" data-sound="click">
+          <div class="compile-btn__ring"></div>
+          <div class="compile-btn__inner">
+            <span class="compile-btn__icon">▶</span>
+            <span class="compile-btn__label">COMPILE</span>
+          </div>
+          <div class="compile-btn__particles" id="compile-particles"></div>
+        </button>
+
+        <div class="answer-section" id="answer-section">
+          <div class="answer-section__label">SELECT OUTPUT</div>
+          <div class="answer-cards" id="answer-cards">
+            <div class="answer-card" data-answer="A">
+              <span class="answer-card__letter">A</span>
+              <span class="answer-card__val">[ Option 1 ]</span>
+            </div>
+            <div class="answer-card" data-answer="B">
+              <span class="answer-card__letter">B</span>
+              <span class="answer-card__val">[ Option 2 ]</span>
+            </div>
+            <div class="answer-card" data-answer="C">
+              <span class="answer-card__letter">C</span>
+              <span class="answer-card__val">[ Option 3 ]</span>
+            </div>
+            <div class="answer-card" data-answer="D">
+              <span class="answer-card__letter">D</span>
+              <span class="answer-card__val">[ Option 4 ]</span>
+            </div>
+          </div>
+          <div class="answer-result" id="answer-result">
+            <div class="answer-result__icon" id="result-icon"></div>
+            <div class="answer-result__text" id="result-text"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-footer-btn">
+      <button class="cta-btn cta-btn--amber" id="btn-code-next" data-sound="click">
+        <span class="cta-btn__icon">▶</span>
+        <span>ACCESS SECRET TERMINAL</span>
+        <div class="cta-btn__glow"></div>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6 — SECRET TERMINAL
+  ============================================================ -->
+  <section id="s-terminal" class="section">
+    <canvas id="bg-canvas-6" class="section-canvas"></canvas>
+
+    <div class="section-header">
+      <span class="sec-label">SECURE SHELL — ENCRYPTED //</span>
+      <h2 class="sec-title" data-text="GHOST TERMINAL">GHOST TERMINAL</h2>
+      <span class="sec-line sec-line--green"></span>
+    </div>
+
+    <div class="terminal-wrap">
+      <div class="terminal">
+        <div class="terminal__titlebar">
+          <div class="terminal__dot terminal__dot--red"></div>
+          <div class="terminal__dot terminal__dot--yellow"></div>
+          <div class="terminal__dot terminal__dot--green"></div>
+          <span class="terminal__title">GHOST_SHELL v4.7.2 — CONNECTED</span>
+        </div>
+
+        <div class="terminal__body" id="term-body">
+          <!-- Boot lines injected by JS -->
+        </div>
+
+        <div class="terminal__input-row">
+          <span class="terminal__prompt">root@classified:~$</span>
+          <input type="text" class="terminal__input" id="term-input" autocomplete="off" spellcheck="false" placeholder="type a command..." />
+          <span class="terminal__cursor-blink">▮</span>
+        </div>
+
+        <div class="terminal__suggestions" id="term-suggestions">
+          <span class="terminal__sugg-label">AVAILABLE:</span>
+          <span class="term-sugg" data-cmd="help">help</span>
+          <span class="term-sugg" data-cmd="scan">scan</span>
+          <span class="term-sugg" data-cmd="decrypt">decrypt</span>
+          <span class="term-sugg" data-cmd="whoami">whoami</span>
+          <span class="term-sugg" data-cmd="status">status</span>
+          <span class="term-sugg" data-cmd="unlock">unlock</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-footer-btn">
+      <button class="cta-btn cta-btn--green" id="btn-terminal-next" data-sound="click">
+        <span class="cta-btn__icon">▶</span>
+        <span>VIEW MISSION REPORT</span>
+        <div class="cta-btn__glow"></div>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7 — MISSION REPORT
+  ============================================================ -->
+  <section id="s-report" class="section">
+    <canvas id="bg-canvas-7" class="section-canvas"></canvas>
+
+    <div class="report-wrap">
+      <div class="report-paper">
+
+        <div class="report-header">
+          <div class="report-stamp">CLASSIFIED</div>
+          <div class="report-org">OPERATION CONTROL / SECTOR 7</div>
+          <h2 class="report-title">MISSION REPORT</h2>
+          <div class="report-id"># OPR-0001-[YEAR] — FINAL ASSESSMENT</div>
+          <div class="report-divider"></div>
+        </div>
+
+        <div class="report-body" id="report-body">
+
+          <div class="report-field" data-reveal="0">
+            <span class="report-field__key">SUBJECT</span>
+            <span class="report-field__dots">..............................</span>
+            <span class="report-field__val">[ AGENT NAME ]</span>
+          </div>
+
+          <div class="report-field" data-reveal="1">
+            <span class="report-field__key">MISSION DURATION</span>
+            <span class="report-field__dots">...............</span>
+            <span class="report-field__val">21 YEARS — ONGOING</span>
+          </div>
+
+          <div class="report-field" data-reveal="2">
+            <span class="report-field__key">PRIMARY OBJECTIVE</span>
+            <span class="report-field__dots">...............</span>
+            <span class="report-field__val">[ PLACEHOLDER OBJECTIVE ]</span>
+          </div>
+
+          <div class="report-field" data-reveal="3">
+            <span class="report-field__key">THREAT ASSESSMENT</span>
+            <span class="report-field__dots">...............</span>
+            <span class="report-field__val report-field__val--green">NON-HOSTILE — FRIENDLY</span>
+          </div>
+
+          <div class="report-field" data-reveal="4">
+            <span class="report-field__key">NOTABLE TRAITS</span>
+            <span class="report-field__dots">.................</span>
+            <span class="report-field__val">[ PLACEHOLDER TRAITS ]</span>
+          </div>
+
+          <div class="report-divider report-divider--sm"></div>
+
+          <div class="report-section-title" data-reveal="5">PSYCHOLOGICAL PROFILE</div>
+
+          <div class="report-para" data-reveal="6">
+            [ PLACEHOLDER — Write 2-3 sentences describing the agent's personality. This will be revealed line by line in a cinematic typing effect. ]
+          </div>
+
+          <div class="report-divider report-divider--sm"></div>
+
+          <div class="report-section-title" data-reveal="7">FINAL VERDICT</div>
+
+          <div class="report-verdict" data-reveal="8">
+            <div class="report-verdict__bar"></div>
+            <div class="report-verdict__content">
+              <div class="report-verdict__label">OVERALL ASSESSMENT</div>
+              <div class="report-verdict__value">
+                <span class="report-verdict__score">97.4%</span>
+                <span class="report-verdict__grade">EXCEPTIONAL</span>
+              </div>
+            </div>
+            <div class="report-verdict__badge">◈</div>
+          </div>
+
+          <div class="report-signature" data-reveal="9">
+            <div class="report-sig-line"></div>
+            <div class="report-sig-name">OPERATION DIRECTOR — [YEAR]</div>
+            <div class="report-sig-stamp">⬟ AUTHENTICATED</div>
+          </div>
+
+        </div>
+
+        <div class="report-scanline"></div>
+        <div class="report-corner report-corner--tl"></div>
+        <div class="report-corner report-corner--tr"></div>
+        <div class="report-corner report-corner--bl"></div>
+        <div class="report-corner report-corner--br"></div>
+
+      </div>
+    </div>
+
+    <div class="section-footer-btn">
+      <button class="cta-btn cta-btn--blue" id="btn-report-next" data-sound="click">
+        <span class="cta-btn__icon">▶</span>
+        <span>PROCEED TO FINAL DIRECTIVE</span>
+        <div class="cta-btn__glow"></div>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8 — THE BUTTON
+  ============================================================ -->
+  <section id="s-button" class="section">
+    <canvas id="bg-canvas-8" class="section-canvas"></canvas>
+
+    <div class="danger-zone">
+      <div class="danger-label danger-label--top">
+        <span>⚠ WARNING — AUTHORIZED PERSONNEL ONLY ⚠</span>
+      </div>
+
+      <div class="danger-orbit" id="danger-orbit">
+        <div class="orbit-ring orbit-ring--1"></div>
+        <div class="orbit-ring orbit-ring--2"></div>
+        <div class="orbit-ring orbit-ring--3"></div>
+
+        <button class="danger-btn" id="danger-btn" data-sound="danger">
+          <div class="danger-btn__bg"></div>
+          <div class="danger-btn__text">DON'T<br>CLICK</div>
+          <div class="danger-btn__ripple" id="danger-ripple"></div>
+          <div class="danger-btn__glow"></div>
+        </button>
+      </div>
+
+      <div class="danger-warning-text" id="danger-warning-text">
+        <span class="danger-blink">▮</span>
+        <span id="danger-hint-text">This button does absolutely nothing. Probably.</span>
+        <span class="danger-blink">▮</span>
+      </div>
+
+      <div class="danger-label danger-label--bottom">
+        <span>CLASSIFIED DIRECTIVE — DO NOT ENGAGE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9 — ENDING
+  ============================================================ -->
+  <section id="s-ending" class="section">
+    <div class="ending-wrap" id="ending-wrap">
+
+      <div class="glitch-overlay" id="glitch-overlay"></div>
+
+      <canvas id="ending-particles-canvas" class="ending-particles-canvas"></canvas>
+
+      <div class="ending-content" id="ending-content">
+        <div class="ending-line" id="ending-line-1"></div>
+        <div class="ending-line ending-line--lg" id="ending-line-2"></div>
+        <div class="ending-line ending-line--sub" id="ending-line-3"></div>
+        <div class="ending-divider"></div>
+        <div class="ending-msg" id="ending-msg">
+          <!-- Final birthday message goes here — customise per person -->
+          <p class="ending-msg__p" id="ending-msg-p">[ PLACEHOLDER — Write the birthday message here. ]</p>
+        </div>
+        <div class="ending-signature" id="ending-sig">— [ FROM YOUR FRIEND / TEAM ] —</div>
+        <button class="cta-btn cta-btn--blue ending-restart" id="btn-restart" data-sound="click">
+          <span class="cta-btn__icon">↺</span>
+          <span>RESTART MISSION</span>
+          <div class="cta-btn__glow"></div>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NAV DOTS
+  ============================================================ -->
+  <nav class="nav-dots" id="nav-dots">
+    <button class="nav-dot nav-dot--active" data-section="s-identity" title="Identity"></button>
+    <button class="nav-dot" data-section="s-personality" title="Personality"></button>
+    <button class="nav-dot" data-section="s-evidence" title="Evidence"></button>
+    <button class="nav-dot" data-section="s-code" title="Code Challenge"></button>
+    <button class="nav-dot" data-section="s-terminal" title="Terminal"></button>
+    <button class="nav-dot" data-section="s-report" title="Report"></button>
+    <button class="nav-dot" data-section="s-button" title="Final Button"></button>
+  </nav>
+
+  <!-- ============================================================
+       TRANSITION OVERLAY
+  ============================================================ -->
+  <div id="transition-overlay" class="transition-overlay">
+    <div class="transition-overlay__scanlines"></div>
+    <div class="transition-overlay__text" id="transition-text">ACCESSING...</div>
+  </div>
+
+  <!-- SOUND PLACEHOLDER -->
+  <div id="sound-system" aria-hidden="true" style="display:none">
+    <!-- Sounds would be loaded here -->
+    <!-- <audio id="snd-click" src="sounds/click.mp3"></audio> -->
+    <!-- <audio id="snd-flip" src="sounds/flip.mp3"></audio> -->
+    <!-- <audio id="snd-unlock" src="sounds/unlock.mp3"></audio> -->
+    <!-- <audio id="snd-terminal" src="sounds/typing.mp3"></audio> -->
+    <!-- <audio id="snd-danger" src="sounds/danger.mp3"></audio> -->
+    <!-- <audio id="snd-achievement" src="sounds/achievement.mp3"></audio> -->
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/identity.js"></script>
+  <script src="js/personality.js"></script>
+  <script src="js/evidence.js"></script>
+  <script src="js/code.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/report.js"></script>
+  <script src="js/button.js"></script>
+  <script src="js/ending.js"></script>
+</body>
+</html>

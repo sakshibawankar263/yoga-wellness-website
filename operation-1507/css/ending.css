@@ -1,0 +1,102 @@
+#s-ending {
+  z-index: 4500;
+  background: #000;
+}
+.ending-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.ending-particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.glitch-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  animation: glitch-overlay-anim 0.5s ease-out forwards;
+}
+@keyframes glitch-overlay-anim {
+  0%   { background: repeating-linear-gradient(0deg, transparent 0%, rgba(0,184,255,0.08) 2%, transparent 4%); opacity: 1; }
+  50%  { background: repeating-linear-gradient(90deg, transparent 0%, rgba(155,92,246,0.08) 1%, transparent 2%); opacity: 0.6; }
+  100% { background: none; opacity: 0; }
+}
+.ending-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  max-width: 600px;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.ending-content.visible { opacity: 1; }
+
+.ending-line {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  color: var(--blue);
+  min-height: 1.2em;
+}
+.ending-line--lg {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 40px var(--blue-glow), 0 0 80px var(--purple-glow);
+}
+.ending-line--sub {
+  font-size: 0.85rem;
+  color: var(--muted-lt);
+  letter-spacing: 0.2em;
+  font-family: var(--font-mono);
+}
+.ending-divider {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+}
+.ending-msg {
+  max-width: 480px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0,184,255,0.15);
+  background: rgba(0,184,255,0.03);
+}
+.ending-msg__p {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--white);
+}
+.ending-signature {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--muted-lt);
+}
+.ending-restart { margin-top: 0.5rem; }
+
+/* ================================================================
+   BACKGROUND CANVAS (global)
+================================================================ */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}

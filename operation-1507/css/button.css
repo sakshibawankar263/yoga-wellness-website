@@ -1,0 +1,125 @@
+.danger-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+.danger-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: #ff4444;
+  opacity: 0.6;
+  animation: danger-blink 2s ease-in-out infinite;
+}
+@keyframes danger-blink { 0%, 100% { opacity: 0.6; } 50% { opacity: 0.2; } }
+
+.danger-orbit {
+  position: relative;
+  width: 260px; height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed;
+  animation: orbit-spin linear infinite;
+}
+.orbit-ring--1 {
+  width: 100%; height: 100%;
+  border-color: rgba(255,68,68,0.2);
+  animation-duration: 12s;
+}
+.orbit-ring--2 {
+  width: 72%; height: 72%;
+  border-color: rgba(255,68,68,0.3);
+  animation-duration: 8s;
+  animation-direction: reverse;
+}
+.orbit-ring--3 {
+  width: 48%; height: 48%;
+  border-color: rgba(255,68,68,0.2);
+  animation-duration: 5s;
+}
+@keyframes orbit-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.danger-btn {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  border: 2px solid #ff4444;
+  background: transparent;
+  cursor: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+.danger-btn__bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,68,68,0.1) 0%, transparent 70%);
+  animation: danger-pulse 2s ease-in-out infinite;
+}
+@keyframes danger-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.15); opacity: 0.5; }
+}
+.danger-btn:hover {
+  box-shadow: 0 0 40px rgba(255,68,68,0.5), 0 0 80px rgba(255,68,68,0.2);
+  transform: scale(1.05);
+}
+.danger-btn:hover .danger-btn__bg { animation-duration: 0.8s; }
+.danger-btn__text {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: #ff4444;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(255,68,68,0.8);
+  position: relative;
+  z-index: 2;
+  line-height: 1.2;
+}
+.danger-btn__glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255,68,68,0.4);
+  animation: danger-glow-pulse 2s ease-in-out infinite;
+}
+@keyframes danger-glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255,68,68,0.4); }
+  50%       { box-shadow: 0 0 50px rgba(255,68,68,0.7); }
+}
+.danger-btn__ripple { position: absolute; inset: 0; border-radius: 50%; pointer-events: none; }
+.ripple-wave {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255,68,68,0.6);
+  animation: ripple-out 0.8s ease-out forwards;
+}
+@keyframes ripple-out {
+  from { transform: scale(1); opacity: 1; }
+  to   { transform: scale(2); opacity: 0; }
+}
+
+.danger-warning-text {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: rgba(255,68,68,0.5);
+  letter-spacing: 0.15em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.danger-blink { animation: blink-cursor 0.8s step-end infinite; color: #ff4444; }
