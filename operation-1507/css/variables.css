@@ -1,30 +1,33 @@
 :root {
   /* Base */
-  --bg-base:       #060810;
-  --bg-surface:    #0b0d16;
-  --bg-elevated:   #10141f;
-  --bg-glass:      rgba(10, 14, 26, 0.72);
+  --bg-base:     #050816;
+--bg-surface:  #0B1020;
+--bg-elevated: #111827;
+--bg-glass:    rgba(8,16,32,.72);
 
   /* Accents */
-  --blue:          #00b8ff;
-  --blue-dim:      rgba(0, 184, 255, 0.15);
-  --blue-glow:     rgba(0, 184, 255, 0.4);
+  --blue:        #00E5FF;
+--blue-dim:    rgba(0,229,255,.15);
+--blue-glow:   rgba(0,229,255,.45);
 
-  --purple:        #9b5cf6;
-  --purple-dim:    rgba(155, 92, 246, 0.15);
-  --purple-glow:   rgba(155, 92, 246, 0.4);
+--purple:      #8B5CF6;
+--purple-dim:  rgba(139,92,246,.15);
+--purple-glow: rgba(139,92,246,.45);
 
-  --green:         #00e5a0;
-  --green-dim:     rgba(0, 229, 160, 0.15);
-  --green-glow:    rgba(0, 229, 160, 0.4);
+--green:       #00F5A0;
+--green-dim:   rgba(0,245,160,.15);
+--green-glow:  rgba(0,245,160,.45);
 
-  --amber:         #f59e0b;
-  --amber-dim:     rgba(245, 158, 11, 0.15);
-  --amber-glow:    rgba(245, 158, 11, 0.4);
+--amber:       #FFB800;
+--amber-dim:   rgba(255,184,0,.15);
+--amber-glow:  rgba(255,184,0,.45);
 
-  --white:         #e8ecf4;
-  --muted:         #4a5568;
-  --muted-lt:      #6b7a96;
+--red:       #FF4D6D;
+--red-glow:  rgba(255,77,109,.45);
+
+  --white:     #F8FAFC;
+--muted:     #64748B;
+--muted-lt:  #CBD5E1;
 
   /* Typography */
   --font-display:  'Orbitron', sans-serif;
@@ -46,7 +49,8 @@
 html { font-size: 16px; scroll-behavior: smooth; }
 
 body {
-  background: var(--bg-base);
+ background:
+radial-gradient(circle at top,#16264a 0%,#050816 45%,#02040a 100%);
   color: var(--white);
   font-family: var(--font-ui);
   font-weight: 400;
@@ -56,4 +60,60 @@ body {
   height: 100vh;
   cursor: none;
   user-select: none;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+
+background:
+radial-gradient(circle at 15% 20%,rgba(0,229,255,.12),transparent 28%),
+radial-gradient(circle at 80% 75%,rgba(139,92,246,.10),transparent 35%),
+radial-gradient(circle at 50% 100%,rgba(0,245,160,.08),transparent 30%);
+
+pointer-events:none;
+z-index:-2;
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background-image:
+
+linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+
+linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
+background-size:50px 50px;
+
+opacity:.18;
+
+pointer-events:none;
+
+animation:gridMove 20s linear infinite;
+
+z-index:-1;
+
+}
+
+@keyframes gridMove{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(50px);
+
+}
+
 }
