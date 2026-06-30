@@ -19,3 +19,37 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; }
 }
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width:1200px){
+
+.section{
+
+justify-content:flex-start;
+
+overflow-y:auto;
+
+}
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width:768px){
+
+.section{
+
+justify-content:flex-start;
+
+overflow-y:auto;
+
+padding:2rem 1rem;
+
+}
+
+}

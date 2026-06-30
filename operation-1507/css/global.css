@@ -9,7 +9,8 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--t-slow) ease;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .section--active {
   opacity: 1;
