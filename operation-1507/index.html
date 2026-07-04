@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="css/personality.css">
 <link rel="stylesheet" href="css/evidence.css">
 <link rel="stylesheet" href="css/code.css">
-<link rel="stylesheet" href="css/terminal.css">
 <link rel="stylesheet" href="css/report.css">
 <link rel="stylesheet" href="css/button.css">
 <link rel="stylesheet" href="css/ending.css">
@@ -369,275 +368,237 @@ Doesn't ask for attention. Still deserves this mission.</div>
        SECTION 4 — EVIDENCE ROOM
   ============================================================ -->
   <section id="s-evidence" class="section">
-    <canvas id="bg-canvas-4" class="section-canvas"></canvas>
 
-    <div class="section-header">
-      <span class="sec-label">CASE FILE — RESTRICTED //</span>
-      <h2 class="sec-title" data-text="EVIDENCE ROOM">EVIDENCE ROOM</h2>
-      <span class="sec-line sec-line--green"></span>
-    </div>
+  <canvas id="bg-canvas-4" class="section-canvas"></canvas>
 
-    <div class="evidence-grid" id="evidence-grid">
+  <div class="section-header">
+    <span class="sec-label">CLASSIFIED DATABASE //</span>
+    <h2 class="sec-title" data-text="CLASSIFIED ARCHIVES">CLASSIFIED ARCHIVES</h2>
+    <span class="sec-line sec-line--green"></span>
+  </div>
 
-      <div class="ev-card" data-id="ev1">
-        <div class="ev-card__inner">
-          <div class="ev-card__front">
-            <div class="ev-card__badge">EXHIBIT A</div>
-            <div class="ev-card__icon">⬟</div>
-            <div class="ev-card__title">MEMORY FRAGMENT</div>
-            <div class="ev-card__sub">[ CLASSIFIED ]</div>
-            <div class="ev-card__corner ev-card__corner--tl"></div>
-            <div class="ev-card__corner ev-card__corner--tr"></div>
-            <div class="ev-card__corner ev-card__corner--bl"></div>
-            <div class="ev-card__corner ev-card__corner--br"></div>
-            <div class="ev-card__glow"></div>
-          </div>
-          <div class="ev-card__back">
-            <div class="ev-card__back-label">EVIDENCE DETAILS</div>
-            <div class="ev-card__back-content">
-              [ PLACEHOLDER — Add a memory, inside joke, or milestone here ]
-            </div>
-            <div class="ev-card__back-stamp">VERIFIED</div>
-            <div class="ev-card__corner ev-card__corner--tl"></div>
-            <div class="ev-card__corner ev-card__corner--tr"></div>
-            <div class="ev-card__corner ev-card__corner--bl"></div>
-            <div class="ev-card__corner ev-card__corner--br"></div>
-          </div>
+  <div class="archive-container">
+
+    <!-- SECURITY TERMINAL -->
+
+    <div class="archive-access hidden" id="archive-access">
+
+      <div class="archive-terminal">
+
+        <div class="terminal-header">
+          <span>MEMORY RECOVERY SYSTEM</span>
+          <span id="terminal-status">WAITING...</span>
         </div>
-      </div>
 
-      <div class="ev-card" data-id="ev2">
-        <div class="ev-card__inner">
-          <div class="ev-card__front">
-            <div class="ev-card__badge ev-card__badge--purple">EXHIBIT B</div>
-            <div class="ev-card__icon">◈</div>
-            <div class="ev-card__title">DATA ARTIFACT</div>
-            <div class="ev-card__sub">[ CLASSIFIED ]</div>
-            <div class="ev-card__corner ev-card__corner--tl"></div>
-            <div class="ev-card__corner ev-card__corner--tr"></div>
-            <div class="ev-card__corner ev-card__corner--bl"></div>
-            <div class="ev-card__corner ev-card__corner--br"></div>
-            <div class="ev-card__glow ev-card__glow--purple"></div>
-          </div>
-          <div class="ev-card__back">
-            <div class="ev-card__back-label">EVIDENCE DETAILS</div>
-            <div class="ev-card__back-content">
-              [ PLACEHOLDER — Add a fact, habit, or quirk here ]
-            </div>
-            <div class="ev-card__back-stamp ev-card__back-stamp--purple">VERIFIED</div>
-            <div class="ev-card__corner ev-card__corner--tl"></div>
-            <div class="ev-card__corner ev-card__corner--tr"></div>
-            <div class="ev-card__corner ev-card__corner--bl"></div>
-            <div class="ev-card__corner ev-card__corner--br"></div>
-          </div>
-        </div>
-      </div>
+        <div class="terminal-screen">
 
-      <div class="ev-card" data-id="ev3">
-        <div class="ev-card__inner">
-          <div class="ev-card__front">
-            <div class="ev-card__badge ev-card__badge--green">EXHIBIT C</div>
-            <div class="ev-card__icon">⬡</div>
-            <div class="ev-card__title">INTEL FILE</div>
-            <div class="ev-card__sub">[ CLASSIFIED ]</div>
-            <div class="ev-card__corner ev-card__corner--tl"></div>
-            <div class="ev-card__corner ev-card__corner--tr"></div>
-            <div class="ev-card__corner ev-card__corner--bl"></div>
-            <div class="ev-card__corner ev-card__corner--br"></div>
-            <div class="ev-card__glow ev-card__glow--green"></div>
-          </div>
-          <div class="ev-card__back">
-            <div class="ev-card__back-label">EVIDENCE DETAILS</div>
-            <div class="ev-card__back-content">
-              [ PLACEHOLDER — Add an achievement or talent here ]
-            </div>
-            <div class="ev-card__back-stamp ev-card__back-stamp--green">VERIFIED</div>
-            <div class="ev-card__corner ev-card__corner--tl"></div>
-            <div class="ev-card__corner ev-card__corner--tr"></div>
-            <div class="ev-card__corner ev-card__corner--bl"></div>
-            <div class="ev-card__corner ev-card__corner--br"></div>
-          </div>
-        </div>
-      </div>
+          <p id="terminal-line1">Initializing...</p>
+          <p id="terminal-line2"></p>
+          <p id="terminal-line3"></p>
 
-      <div class="ev-card" data-id="ev4">
-        <div class="ev-card__inner">
-          <div class="ev-card__front">
-            <div class="ev-card__badge ev-card__badge--amber">EXHIBIT D</div>
-            <div class="ev-card__icon">⬟</div>
-            <div class="ev-card__title">FIELD REPORT</div>
-            <div class="ev-card__sub">[ CLASSIFIED ]</div>
-            <div class="ev-card__corner ev-card__corner--tl"></div>
-            <div class="ev-card__corner ev-card__corner--tr"></div>
-            <div class="ev-card__corner ev-card__corner--bl"></div>
-            <div class="ev-card__corner ev-card__corner--br"></div>
-            <div class="ev-card__glow ev-card__glow--amber"></div>
+          <div class="terminal-progress">
+            <div class="terminal-progress-fill" id="terminal-fill"></div>
           </div>
-          <div class="ev-card__back">
-            <div class="ev-card__back-label">EVIDENCE DETAILS</div>
-            <div class="ev-card__back-content">
-              [ PLACEHOLDER — Add a story or shared experience here ]
-            </div>
-            <div class="ev-card__back-stamp ev-card__back-stamp--amber">VERIFIED</div>
-            <div class="ev-card__corner ev-card__corner--tl"></div>
-            <div class="ev-card__corner ev-card__corner--tr"></div>
-            <div class="ev-card__corner ev-card__corner--bl"></div>
-            <div class="ev-card__corner ev-card__corner--br"></div>
-          </div>
+
         </div>
+
       </div>
 
     </div>
 
-    <div class="section-footer-btn">
-      <button class="cta-btn cta-btn--green" id="btn-evidence-next" data-sound="click">
-        <span class="cta-btn__icon">▶</span>
-        <span>ACCESS CODING CHALLENGE</span>
-        <div class="cta-btn__glow"></div>
-      </button>
+    <!-- TOP BAR -->
+
+    <div class="archive-top">
+
+      <span>Recovered Files : 07</span>
+
+      <span>Status : CLASSIFIED</span>
+
     </div>
-  </section>
+
+    <!-- ARCHIVE LIST -->
+
+    <div class="archive-list">
+
+      <div class="archive-folder" data-file="1">
+        <span class="archive-icon">📁</span>
+        <div class="archive-info">
+          <h3>ARCHIVE 01</h3>
+          <p>FIRST IMPRESSION</p>
+        </div>
+        <span class="archive-lock">LOCKED</span>
+      </div>
+
+      <div class="archive-folder" data-file="2">
+        <span class="archive-icon">📁</span>
+        <div class="archive-info">
+          <h3>ARCHIVE 02</h3>
+          <p>OBSERVATION LOG</p>
+        </div>
+        <span class="archive-lock">LOCKED</span>
+      </div>
+
+      <div class="archive-folder" data-file="3">
+        <span class="archive-icon">📁</span>
+        <div class="archive-info">
+          <h3>ARCHIVE 03</h3>
+          <p>DEBATE RECORDS</p>
+        </div>
+        <span class="archive-lock">LOCKED</span>
+      </div>
+
+      <div class="archive-folder" data-file="4">
+        <span class="archive-icon">📁</span>
+        <div class="archive-info">
+          <h3>ARCHIVE 04</h3>
+          <p>STRENGTH ANALYSIS</p>
+        </div>
+        <span class="archive-lock">LOCKED</span>
+      </div>
+
+      
+      <div class="archive-folder archive-folder-final" data-file="5">
+        <span class="archive-icon">🗂</span>
+        <div class="archive-info">
+          <h3>FINAL REPORT</h3>
+          <p>TOP SECRET</p>
+        </div>
+        <span class="archive-lock red">LOCKED</span>
+      </div>
+
+    </div>
+
+    <!-- ARCHIVE VIEW -->
+
+    <div class="archive-view hidden" id="archive-view">
+
+      <div class="archive-window">
+
+        <div class="archive-window-top">
+
+          <span id="archive-title">ARCHIVE</span>
+
+          <button id="archive-close">✕</button>
+
+        </div>
+
+        <div class="archive-body">
+
+          <pre id="archive-text"></pre>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- NEXT BUTTON -->
+
+  <div class="section-footer-btn">
+
+    <button
+      class="cta-btn cta-btn--green"
+      id="btn-evidence-next"
+      data-sound="click">
+
+      <span class="cta-btn__icon">▶</span>
+      <span>ACCESS CODING CHALLENGE</span>
+
+      <div class="cta-btn__glow"></div>
+
+    </button>
+
+  </div>
+
+</section>
 
   <!-- ============================================================
        SECTION 5 — GUESS THE OUTPUT (CODING CHALLENGE)
   ============================================================ -->
   <section id="s-code" class="section">
+
     <canvas id="bg-canvas-5" class="section-canvas"></canvas>
 
     <div class="section-header">
-      <span class="sec-label">COGNITIVE TEST — LEVEL 01 //</span>
-      <h2 class="sec-title" data-text="DECODE THE OUTPUT">DECODE THE OUTPUT</h2>
-      <span class="sec-line sec-line--amber"></span>
+        <span class="sec-label">SECURITY PROTOCOL //</span>
+
+        <h2 class="sec-title" data-text="IDENTITY VERIFICATION">
+            IDENTITY VERIFICATION
+        </h2>
+
+        <span class="sec-line"></span>
     </div>
 
-    <div class="code-challenge-layout">
+    <div class="code-box">
 
-      <div class="code-editor">
-        <div class="code-editor__titlebar">
-          <div class="code-editor__dot code-editor__dot--red"></div>
-          <div class="code-editor__dot code-editor__dot--yellow"></div>
-          <div class="code-editor__dot code-editor__dot--green"></div>
-          <span class="code-editor__filename">challenge_01.py</span>
-          <span class="code-editor__status">● READY</span>
+        <div class="code-mission">
+            FINAL SECURITY CHECK
         </div>
-        <div class="code-editor__body">
-          <div class="code-editor__lines" id="code-lines">
-            <!-- JS injects line numbers -->
-          </div>
-          <div class="code-editor__content" id="code-content">
-            <!-- JS injects code here -->
-          </div>
-        </div>
-        <div class="code-editor__statusbar">
-          <span>Python 3.11</span>
-          <span>UTF-8</span>
-          <span>Line 1, Col 1</span>
-          <span class="code-editor__lang-badge">PY</span>
-        </div>
-      </div>
 
-      <div class="code-right">
-        <button class="compile-btn" id="compile-btn" data-sound="click">
-          <div class="compile-btn__ring"></div>
-          <div class="compile-btn__inner">
-            <span class="compile-btn__icon">▶</span>
-            <span class="compile-btn__label">COMPILE</span>
-          </div>
-          <div class="compile-btn__particles" id="compile-particles"></div>
-        </button>
+        <h3 class="code-question">
+            Who is more intelligent?
+        </h3>
 
-        <div class="answer-section" id="answer-section">
-          <div class="answer-section__label">SELECT OUTPUT</div>
-          <div class="answer-cards" id="answer-cards">
-            <div class="answer-card" data-answer="A">
-              <span class="answer-card__letter">A</span>
-              <span class="answer-card__val">[ Option 1 ]</span>
-            </div>
-            <div class="answer-card" data-answer="B">
-              <span class="answer-card__letter">B</span>
-              <span class="answer-card__val">[ Option 2 ]</span>
-            </div>
-            <div class="answer-card" data-answer="C">
-              <span class="answer-card__letter">C</span>
-              <span class="answer-card__val">[ Option 3 ]</span>
-            </div>
-            <div class="answer-card" data-answer="D">
-              <span class="answer-card__letter">D</span>
-              <span class="answer-card__val">[ Option 4 ]</span>
-            </div>
-          </div>
-          <div class="answer-result" id="answer-result">
-            <div class="answer-result__icon" id="result-icon"></div>
-            <div class="answer-result__text" id="result-text"></div>
-          </div>
+        <div class="code-options">
+
+            <button class="code-option" data-answer="sakshi">
+                Sakshi 🤔
+            </button>
+
+            <button class="code-option">
+                Suyash 😌
+            </button>
+
+            <button class="code-option">
+                Obviously Suyash 😏
+            </button>
+
+            <button class="code-option">
+                Without any doubt, Suyash. 😄
+            </button>
+
         </div>
-      </div>
 
     </div>
 
-    <div class="section-footer-btn">
-      <button class="cta-btn cta-btn--amber" id="btn-code-next" data-sound="click">
-        <span class="cta-btn__icon">▶</span>
-        <span>ACCESS SECRET TERMINAL</span>
-        <div class="cta-btn__glow"></div>
-      </button>
-    </div>
-  </section>
+    <!-- Verification Popup -->
+<div class="verify-popup hidden" id="verify-popup">
 
+    <div class="verify-card">
+
+        <div class="verify-header">
+
+            <span>SECURITY RESPONSE</span>
+
+            <button id="verify-popup-close">✕</button>
+
+        </div>
+
+        <div class="verify-content">
+
+            <pre id="verify-text"></pre>
+
+        </div>
+
+        <div class="verify-footer">
+
+            <button id="btn-final-report" class="verify-btn">
+
+                ▶ OPEN FINAL REPORT
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+    
+</section>
   <!-- ============================================================
-       SECTION 6 — SECRET TERMINAL
-  ============================================================ -->
-  <section id="s-terminal" class="section">
-    <canvas id="bg-canvas-6" class="section-canvas"></canvas>
-
-    <div class="section-header">
-      <span class="sec-label">SECURE SHELL — ENCRYPTED //</span>
-      <h2 class="sec-title" data-text="GHOST TERMINAL">GHOST TERMINAL</h2>
-      <span class="sec-line sec-line--green"></span>
-    </div>
-
-    <div class="terminal-wrap">
-      <div class="terminal">
-        <div class="terminal__titlebar">
-          <div class="terminal__dot terminal__dot--red"></div>
-          <div class="terminal__dot terminal__dot--yellow"></div>
-          <div class="terminal__dot terminal__dot--green"></div>
-          <span class="terminal__title">GHOST_SHELL v4.7.2 — CONNECTED</span>
-        </div>
-
-        <div class="terminal__body" id="term-body">
-          <!-- Boot lines injected by JS -->
-        </div>
-
-        <div class="terminal__input-row">
-          <span class="terminal__prompt">root@classified:~$</span>
-          <input type="text" class="terminal__input" id="term-input" autocomplete="off" spellcheck="false" placeholder="type a command..." />
-          <span class="terminal__cursor-blink">▮</span>
-        </div>
-
-        <div class="terminal__suggestions" id="term-suggestions">
-          <span class="terminal__sugg-label">AVAILABLE:</span>
-          <span class="term-sugg" data-cmd="help">help</span>
-          <span class="term-sugg" data-cmd="scan">scan</span>
-          <span class="term-sugg" data-cmd="decrypt">decrypt</span>
-          <span class="term-sugg" data-cmd="whoami">whoami</span>
-          <span class="term-sugg" data-cmd="status">status</span>
-          <span class="term-sugg" data-cmd="unlock">unlock</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-footer-btn">
-      <button class="cta-btn cta-btn--green" id="btn-terminal-next" data-sound="click">
-        <span class="cta-btn__icon">▶</span>
-        <span>VIEW MISSION REPORT</span>
-        <div class="cta-btn__glow"></div>
-      </button>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SECTION 7 — MISSION REPORT
+       SECTION 6 — MISSION REPORT
   ============================================================ -->
   <section id="s-report" class="section">
     <canvas id="bg-canvas-7" class="section-canvas"></canvas>
@@ -809,7 +770,6 @@ Doesn't ask for attention. Still deserves this mission.</div>
     <button class="nav-dot" data-section="s-personality" title="Personality"></button>
     <button class="nav-dot" data-section="s-evidence" title="Evidence"></button>
     <button class="nav-dot" data-section="s-code" title="Code Challenge"></button>
-    <button class="nav-dot" data-section="s-terminal" title="Terminal"></button>
     <button class="nav-dot" data-section="s-report" title="Report"></button>
     <button class="nav-dot" data-section="s-button" title="Final Button"></button>
   </nav>
@@ -839,7 +799,6 @@ Doesn't ask for attention. Still deserves this mission.</div>
   <script src="js/personality.js"></script>
   <script src="js/evidence.js"></script>
   <script src="js/code.js"></script>
-  <script src="js/terminal.js"></script>
   <script src="js/report.js"></script>
   <script src="js/button.js"></script>
   <script src="js/ending.js"></script>

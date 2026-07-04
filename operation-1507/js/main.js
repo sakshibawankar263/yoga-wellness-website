@@ -397,3 +397,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Remove any pre-existing visible buttons (they should appear dynamically)
   $$('.cta-btn').forEach(btn => btn.classList.remove('visible'));
 });
+document.addEventListener("click", function (e) {
+
+    if (e.target.id === "archive-close") {
+
+        document
+            .getElementById("archive-view")
+            .classList.add("hidden");
+
+    }
+
+});
