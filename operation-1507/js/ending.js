@@ -1,125 +1,367 @@
-function triggerEnding() {
-  const overlay = $('#transition-overlay');
-  const text    = $('#transition-text');
-  text.textContent = '';
-  overlay.classList.add('active');
+/*==================================
+ENDING SECTION
+==================================*/
+/*==================================
+ENDING AUDIO
+==================================*/
 
-  // Glitch effect
-  let glitchCount = 0;
-  const glitchInterval = setInterval(() => {
-    overlay.style.background = glitchCount % 2 === 0
-      ? 'linear-gradient(0deg, #000 0%, #060810 40%, rgba(0,184,255,0.3) 50%, #000 60%)'
-      : '#000';
-    glitchCount++;
-    if (glitchCount > 10) {
-      clearInterval(glitchInterval);
-      overlay.style.background = '#000';
-      loadEndingSection();
-    }
-  }, 80);
+const fireworksAudio = new Audio("./assets/sound/fireworks.mp3");
+
+fireworksAudio.volume = 0.7;
+fireworksAudio.preload = "auto";
+fireworksAudio.loop = true;   // 🔁 Loop the audio
+
+fireworksAudio.addEventListener("canplaythrough", () => {
+    console.log("✅ Audio loaded successfully");
+});
+
+fireworksAudio.addEventListener("error", () => {
+    console.log("❌ Audio failed");
+    console.log(fireworksAudio.error);
+    console.log(fireworksAudio.currentSrc);
+});
+
+console.log(fireworksAudio.src);
+
+function triggerEnding() {
+
+    const overlay = $('#transition-overlay');
+    const text = $('#transition-text');
+
+    text.textContent = "";
+    overlay.classList.add("active");
+
+    let glitchCount = 0;
+
+    const glitchInterval = setInterval(() => {
+
+        overlay.style.background =
+            glitchCount % 2 === 0
+                ? "linear-gradient(0deg,#000 0%,#060810 40%,rgba(0,184,255,.3) 50%,#000 60%)"
+                : "#000";
+
+        glitchCount++;
+
+        if (glitchCount > 10) {
+
+            clearInterval(glitchInterval);
+
+            overlay.style.background = "#000";
+
+            loadEndingSection();
+
+        }
+
+    }, 80);
+
 }
+
+
 
 function loadEndingSection() {
-  $$('.section').forEach(s => {
-    s.classList.remove('section--active');
-    s.style.pointerEvents = 'none';
-  });
 
-  const ending = $('#s-ending');
-  ending.classList.add('section--active');
-  ending.style.pointerEvents = 'all';
-  STATE.currentSection = 's-ending';
-  updateNavDots('s-ending');
+    $$('.section').forEach(section => {
 
-  $('#transition-overlay').classList.remove('active');
+        section.classList.remove('section--active');
+        section.style.pointerEvents = "none";
 
-  // Init ending particles
-  initEndingParticles();
-
-  // Animate ending content
-  const content = $('#ending-content');
-  const line1   = $('#ending-line-1');
-  const line2   = $('#ending-line-2');
-  const line3   = $('#ending-line-3');
-  const msg     = $('#ending-msg-p');
-  const sig     = $('#ending-sig');
-
-  setTimeout(() => {
-    content.classList.add('visible');
-    typeWrite(line1, 'CLASSIFIED DIRECTIVE — UNLOCKED', 50, () => {
-      setTimeout(() => {
-        typeWrite(line2, 'HAPPY BIRTHDAY', 90, () => {
-          setTimeout(() => {
-            typeWrite(line3, '[ AGENT NAME ] // AGE: 21 // MISSION: CELEBRATE', 40, () => {
-              setTimeout(() => {
-                msg.style.opacity = '0';
-                msg.style.transition = 'opacity 0.8s';
-                setTimeout(() => {
-                  msg.style.opacity = '1';
-                  sig.style.opacity = '1';
-                  sig.style.transition = 'opacity 0.8s';
-                  sig.style.opacity = '0';
-                  setTimeout(() => { sig.style.opacity = '1'; }, 400);
-                  document.getElementById('btn-restart').classList.add('visible');
-                }, 300);
-              }, 500);
-            });
-          }, 400);
-        });
-      }, 300);
     });
-  }, 500);
+
+    const ending = $("#s-ending");
+
+    ending.classList.add("section--active");
+    ending.style.pointerEvents = "all";
+
+    STATE.currentSection = "s-ending";
+
+    updateNavDots("s-ending");
+
+    $("#transition-overlay").classList.remove("active");
+
+    initEndingParticles();
+
+    const content = $("#ending-content");
+    const message = $("#birthday-message");
+    const restart = $("#btn-restart");
+    const sign = document.querySelector(".birthday-sign");
+
+    const finalMessage = `so...
+    You ignored every warning.
+
+Clicked every suspicious button.
+
+Exactly as expected. 😏
+
+Anyway...
+
+I still think
+you're annoying sometimes. 🥲
+
+You probably think
+you're smarter than me.
+
+(I'll let you keep believing that. 😌)
+
+But...
+
+no matter what,
+
+you're still my friend. 🤍
+
+Happy Birthday, Suyash! 🥳
+Have an amazing year ahead. 🎂✨`;
+
+    setTimeout(() => {
+
+        content.classList.add("visible");
+
+        fireworksAudio.currentTime = 0;
+
+fireworksAudio.play().catch(err => console.log(err));
+
+        typeWrite(message, finalMessage, 35, () => {
+
+            if (sign) sign.classList.add("visible");
+
+            restart.classList.add("visible");
+
+        });
+
+    }, 1000);
+
 }
+
+
+
+/*==================================
+TYPEWRITER
+==================================*/
 
 function typeWrite(el, text, speed, callback) {
-  let i = 0;
-  el.textContent = '';
-  const iv = setInterval(() => {
-    el.textContent += text[i++];
-    if (i >= text.length) {
-      clearInterval(iv);
-      if (callback) callback();
-    }
-  }, speed);
+
+    let i = 0;
+
+    el.textContent = "";
+
+    const timer = setInterval(() => {
+
+        el.textContent += text.charAt(i);
+
+        // keep scrolling while typing
+        window.scrollTo({
+
+            top: document.documentElement.scrollHeight,
+
+            behavior: "smooth"
+
+        });
+
+        i++;
+
+        if(i >= text.length){
+
+            clearInterval(timer);
+
+            if(callback) callback();
+
+        }
+
+    }, speed);
+
 }
 
-// Ending particles (celebration)
+
+
+/*==================================
+ENDING PARTICLES
+==================================*/
 function initEndingParticles() {
-  const canvas = document.getElementById('ending-particles-canvas');
-  if (!canvas) return;
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
-  const ctx = canvas.getContext('2d');
-  const colors = ['#00b8ff','#9b5cf6','#00e5a0','#f59e0b','#ffffff'];
-  const particles = Array.from({ length: 80 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    vx: (Math.random() - 0.5) * 1.5,
-    vy: (Math.random() - 0.5) * 1.5,
-    r: Math.random() * 2 + 1,
-    color: colors[Math.floor(Math.random() * colors.length)],
-    pulse: Math.random() * Math.PI * 2
-  }));
 
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy; p.pulse += 0.03;
-      if (p.x < 0) p.x = canvas.width;
-      if (p.x > canvas.width) p.x = 0;
-      if (p.y < 0) p.y = canvas.height;
-      if (p.y > canvas.height) p.y = 0;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r * (0.8 + 0.2 * Math.sin(p.pulse)), 0, Math.PI * 2);
-      ctx.fillStyle = p.color + Math.round((0.4 + 0.4 * Math.sin(p.pulse)) * 255).toString(16).padStart(2,'0');
-      ctx.fill();
+    const canvas = document.getElementById("ending-particles-canvas");
+
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    const wrap = document.getElementById("ending-wrap");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+    const fireworks = [];
+
+    class Firework {
+
+        constructor() {
+
+            this.reset();
+
+        }
+
+        reset() {
+
+            this.x = Math.random() * canvas.width;
+
+this.y = canvas.height + 20;
+const scroll = window.scrollY;
+
+this.targetY =
+100 +
+Math.random() * (canvas.height * 0.35);
+            this.speed = 5 + Math.random() * 2;
+
+            this.color = `hsl(${Math.random()*360},100%,60%)`;
+
+            this.exploded = false;
+
+            this.particles = [];
+
+        }
+
+        update() {
+
+            if (!this.exploded) {
+
+                this.y -= this.speed;
+
+                if (this.y <= this.targetY) {
+
+                    this.explode();
+
+                }
+
+            }
+
+            this.particles.forEach(p => p.update());
+
+            this.particles = this.particles.filter(p => p.life > 0);
+
+            if (this.exploded && this.particles.length === 0) {
+
+                this.reset();
+
+            }
+
+        }
+
+        explode() {
+
+            this.exploded = true;
+
+            for (let i = 0; i < 60; i++) {
+
+                this.particles.push(new Spark(this.x, this.y, this.color));
+
+            }
+
+        }
+
+        draw() {
+
+            if (!this.exploded) {
+
+                ctx.beginPath();
+
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+
+                ctx.fillStyle = this.color;
+
+                ctx.fill();
+
+            }
+
+            this.particles.forEach(p => p.draw());
+
+        }
+
+    }
+
+    class Spark {
+
+        constructor(x,y,color){
+
+            this.x=x;
+
+            this.y=y;
+
+            this.color=color;
+
+            const angle=Math.random()*Math.PI*2;
+
+            const speed=Math.random()*5+2;
+
+            this.vx=Math.cos(angle)*speed;
+
+            this.vy=Math.sin(angle)*speed;
+
+            this.life=100;
+
+        }
+
+        update(){
+
+            this.x+=this.vx;
+
+            this.y+=this.vy;
+
+            this.vy+=0.05;
+
+            this.life--;
+
+        }
+
+        draw(){
+
+            ctx.globalAlpha=this.life/100;
+
+            ctx.beginPath();
+
+            ctx.arc(this.x,this.y,2,0,Math.PI*2);
+
+            ctx.fillStyle=this.color;
+
+            ctx.fill();
+
+            ctx.globalAlpha=1;
+
+        }
+
+    }
+
+    for(let i=0;i<6;i++){
+
+        fireworks.push(new Firework());
+
+    }
+
+    function animate(){
+
+    const wrap = document.getElementById("ending-wrap");
+canvas.width = wrap.clientWidth;
+canvas.height = wrap.scrollHeight;
+
+    ctx.fillStyle="rgba(0,0,0,.18)";
+
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    fireworks.forEach(f=>{
+
+        f.update();
+
+        f.draw();
+
     });
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
 
-// Restart
-$('#btn-restart')?.addEventListener('click', () => {
-  location.reload();
+    requestAnimationFrame(animate);
+   
+}
+ animate();
+}
+/*==================================
+RESTART
+==================================*/
+
+$("#btn-restart")?.addEventListener("click", () => {
+
+    location.reload();
+
 });

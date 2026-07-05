@@ -1,11 +1,11 @@
 const BOOT_LINES = [
-  { text: 'Initializing Ghost Protocol', status: 'OK' },
-  { text: 'Scanning encrypted filesystem', status: 'OK' },
-  { text: 'Authenticating clearance token', status: 'OK' },
-  { text: 'Connecting to secure network', status: 'OK' },
-  { text: 'Decrypting classified files', status: 'WARN', warn: true },
-  { text: 'Loading investigation database', status: 'OK' },
-  { text: 'Preparing identity module', status: 'ACTIVE' },
+   { text: 'Finding Suyash', status: 'OK' },
+{ text: 'Verifying Identity', status: 'OK' },
+{ text: 'Checking Friendship', status: 'OK' },
+{ text: 'Loading Memories', status: 'OK' },
+{ text: 'Preparing Surprise', status: 'WARN', warn: true },
+{ text: 'Birthday Protocol', status: 'OK' },
+{ text: 'Access Granted', status: 'ACTIVE' },
 ];
 
 const LOGO_TEXT = 'CLASSIFIED';
