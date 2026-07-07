@@ -214,6 +214,13 @@ function showSection(id, label = 'ACCESSING...') {
     target.style.pointerEvents = 'all';
     STATE.currentSection = id;
 
+    // Always start every section from the top
+window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "instant"
+});
+
     // Spawn section background
     const bgMap = {
       's-identity':    { canvas: 'bg-canvas-2', accent: '#00b8ff' },

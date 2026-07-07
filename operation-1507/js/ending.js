@@ -119,13 +119,17 @@ Have an amazing year ahead. 🎂✨`;
 
 fireworksAudio.play().catch(err => console.log(err));
 
-        typeWrite(message, finalMessage, 35, () => {
+       typeWrite(message, finalMessage, 35, () => {
 
-            if (sign) sign.classList.add("visible");
+    if (sign) sign.classList.add("visible");
 
-            restart.classList.add("visible");
+    restart.classList.add("visible");
 
-        });
+    // Wait a second after typing finishes,
+    // then smoothly return to the top
+    
+
+});
 
     }, 1000);
 
@@ -137,7 +141,7 @@ fireworksAudio.play().catch(err => console.log(err));
 TYPEWRITER
 ==================================*/
 
-function typeWrite(el, text, speed, callback) {
+function typeWrite(el, text, speed, callback){
 
     let i = 0;
 
@@ -147,12 +151,12 @@ function typeWrite(el, text, speed, callback) {
 
         el.textContent += text.charAt(i);
 
-        // keep scrolling while typing
+        // keep page moving downward while typing
         window.scrollTo({
 
-            top: document.documentElement.scrollHeight,
+            top: document.body.scrollHeight,
 
-            behavior: "smooth"
+            behavior:"smooth"
 
         });
 
@@ -166,7 +170,7 @@ function typeWrite(el, text, speed, callback) {
 
         }
 
-    }, speed);
+    },speed);
 
 }
 
@@ -336,9 +340,6 @@ Math.random() * (canvas.height * 0.35);
     function animate(){
 
     const wrap = document.getElementById("ending-wrap");
-canvas.width = wrap.clientWidth;
-canvas.height = wrap.scrollHeight;
-
     ctx.fillStyle="rgba(0,0,0,.18)";
 
     ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -354,6 +355,13 @@ canvas.height = wrap.scrollHeight;
     requestAnimationFrame(animate);
    
 }
+window.addEventListener("resize",()=>{
+
+    canvas.width = wrap.clientWidth;
+
+    canvas.height = wrap.scrollHeight;
+
+});
  animate();
 }
 /*==================================
@@ -365,3 +373,7 @@ $("#btn-restart")?.addEventListener("click", () => {
     location.reload();
 
 });
+
+function enterEnding() {
+    loadEndingSection();
+}

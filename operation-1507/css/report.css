@@ -211,3 +211,45 @@ color:#dbeeff;
 padding-top:8px;
 
 }
+
+/* ===========================
+   REPORT FULL VIEW FIX
+=========================== */
+
+#s-report{
+    align-items:flex-start !important;
+    justify-content:flex-start !important;
+    overflow-y:auto;
+    padding-top:70px;
+}
+
+#s-report .report-wrap{
+    width:100%;
+    max-width:900px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.report-paper{
+    width:100%;
+}
+
+/* ==========================
+   REPORT FOOTER FIX
+========================== */
+
+#s-report .section-footer-btn{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-top:40px;
+
+}
